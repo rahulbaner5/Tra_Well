@@ -23,7 +23,7 @@ namespace Travellness.WebApi.DaraAccess.Database.Implementation
         {
             try
             {
-                // Assuming you have an entity in your DbContext for storing registrations, replace RegistrationEntity with your actual entity name.
+                
                 var registrationEntity = new Register
                 {
                     FirstName = register.FirstName,
@@ -46,6 +46,51 @@ namespace Travellness.WebApi.DaraAccess.Database.Implementation
                 throw; 
             }
         }
+
+        
+
+        public async Task<Register> GetRegisterAsync(int id)
+        {
+            try
+            {
+               
+               var registerEntity = await Registers.FindAsync(id);
+
+                if (registerEntity != null)
+                {
+                    logger.LogInformation($"Retrieved registration for user with ID {registerEntity.Id}");
+                    return registerEntity;
+                }
+                else
+                {
+                    logger.LogInformation($"No registration found for user with ID {id}");
+                    return null; 
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Error retrieving registration: {ex.Message}");
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<Register>> GetAllRegistersAsync()
+        {
+            try
+            {
+                var getAll = await Registers.ToListAsync();
+
+                return getAll;
+            }
+
+            catch(Exception ex)
+            {
+                logger.LogError($"Error retrieving registration: {ex.Message}");
+                throw;
+
+            }
+        }
+
     }
 }
 

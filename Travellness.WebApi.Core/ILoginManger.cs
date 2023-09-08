@@ -7,13 +7,9 @@ using Travellness.Entities.Modal;
 
 namespace Travellness.WebApi.Core
 {
-    public interface IRegisterManager
+    public interface ILoginManager
     {
-        Task AddRegisterAsync(Register register);
-
-        Task<Register> GetRegisterAsync(int id);
-
-        Task<IEnumerable<Register>> GetAllRegistersAsync();
-
+        Task<LoginResult> AuthenticateAsync(LoginModel loginModel);
     }
+
 }

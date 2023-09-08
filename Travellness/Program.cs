@@ -32,6 +32,7 @@ builder.Services.AddDbContext<RegisterDbContext>(options =>
 builder.Services.AddScoped<IRegisterDbContext, RegisterDbContext>();
 builder.Services.AddScoped<IRegisterStore, RegisterStore>();
 builder.Services.AddScoped<IRegisterManager, RegisterManager>();
+builder.Services.AddScoped<ILoginManager, LoginManager>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -43,7 +44,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors(builder =>
+{
+    builder.WithOrigins("http://localhost:3006") 
+           .AllowAnyHeader()
+           .AllowAnyMethod();
+});
 app.UseHttpsRedirection();
 app.UseAuthorization();
 

@@ -10,5 +10,10 @@ namespace Travellness.WebApi.DaraAccess.Store
     public interface IRegisterStore
     {
         Task AddRegisterAsync(Register register);
+
+        Task<Register> GetRegisterAsync(int id);
+
+        Task<IEnumerable<Register>> GetAllRegistersAsync();
+
     }
 }

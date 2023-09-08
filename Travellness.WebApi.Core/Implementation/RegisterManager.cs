@@ -32,5 +32,24 @@ namespace Travellness.WebApi.Core.Implementation
             await this.registerStore.AddRegisterAsync(register);
 
         }
+
+      
+        Task<Register> IRegisterManager.GetRegisterAsync(int id)
+        {
+            try
+            {
+                return  this.registerStore.GetRegisterAsync(id);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Error getting registration: {ex.Message}");
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<Register>> GetAllRegistersAsync()
+        {
+           return await this.registerStore.GetAllRegistersAsync();
+        }
     }
 }

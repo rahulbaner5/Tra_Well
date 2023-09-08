@@ -24,6 +24,18 @@ export const nav = [
     text: "contact",
     url: "/contact",
   },
+
+  {
+    id: 6,
+    text: "Register",
+    url: "/register",
+  },
+
+  {
+    id: 7,
+    text: "Login",
+    url: "/login",
+  },
 ]
 export const category = [
   {

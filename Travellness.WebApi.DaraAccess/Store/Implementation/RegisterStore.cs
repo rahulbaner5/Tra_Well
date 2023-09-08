@@ -31,5 +31,24 @@ namespace Travellness.WebApi.DaraAccess.Store.Implementation
         {
             await this.registerDbContext.AddRegisterAsync(register);
         }
+
+        public async Task<IEnumerable<Register>> GetAllRegistersAsync()
+        {
+            return await this.registerDbContext.GetAllRegistersAsync();
+
+        }
+
+        Task <Register> IRegisterStore.GetRegisterAsync(int id)
+        {
+            try
+            {
+                return  this.registerDbContext.GetRegisterAsync(id);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Error getting registration: {ex.Message}");
+                throw;
+            }
+        }
     }
 }
